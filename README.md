@@ -1,5 +1,6 @@
 # Computer vision: Traffic sign detection and classification
-This repository contains our attempt to detect and classify traffic signs in images from the German Traffic Sign dataset. Coauthors: [@jomartla](https://github.com/jomartla) &amp; [@MateuszKlimas](https://github.com/MateuszKlimas)
+This repository contains our attempt to detect and classify traffic signs in images from the German Traffic Sign dataset. *Coauthors: [@jomartla](https://github.com/jomartla) &amp; [@MateuszKlimas](https://github.com/MateuszKlimas)*
+
 Each notebook contains an iteration to solve the problem in a slightly different manner, being [Assignment_2_3_main](Assignment_2_3_main.ipynb) the last and most complete version.
 
 [Here](/Report%20Computer%20Vision.pdf) you can read the full report of our work. Below, a short summary of the steps taken:
