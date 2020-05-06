@@ -13,7 +13,16 @@ To solve this problem we designed and trained two CNN networks:
 * **Binary classifier**: a network which decides if an image has a traffic sign within it or not. For the non-traffic-sign class in our dataset we randomly selected segments from the background of the images (with cars, buildings, trees, etc). 
 
 * **Categorical classifier**: a network that, given an image of a traffic sign, decides which type of sign it is. Since the data was scarce, we had to use **data augmentation** techiniques to help the network generalize better. We expanded our dataset by rotating slightly or images and changing their brightness
-[!data_augmentation]()
+
+<div class="row">
+  <div class="column">
+    <img src="/pngs/data_aug_brighness.png" height="200px">
+  </div>
+  <div class="column">
+    <img src="/pngs/data_aug_rotation.png"  height="200px">
+  </div>
+</div>
+
 
 #### Pipeline
 Our final pipeline follows these steps :
@@ -23,22 +32,37 @@ Our final pipeline follows these steps :
   - Discarding bboxes whose **ratio** is not 3:4 < ratio < 4:3
   - Discarding bboxes whose **size > 75x75 px**
   - Discarding bboxes whose pixels where **white > 85 % **
+  
 Here you have an example of the resnet´s remaining bboxes after passing this filters:
-[!resnet_bboxes]()
+<div>
+<img src="/pngs/resnet_rule-filtered.png" height="250px">
+</div>
+
 - We pass the pixels of the bboxes which are left to the Binary classifier, which discards the ones which contain background.
 - We pass the rest to the Categorical classifier, which determines which kind of traffic sign each bbox contains.
 - Lastly we pass all the detected traffic signs which belong to the same image through a **non-maximum-suppression** model. This checks if two or more predictions overlap and are incoherent, and selects the one with most probability of being correct.
-[!non_max_sup]()
+<img src="/pngs/non_max_sup.png" height="250px">
 
 
 ## Results:
 We run a grid search for some hyperparameters in this pipeline and obtained an overall accuracy of 25.35%.
 Here an example of correct traffic sign detection and classification
-[!correct_pred]()
+<div class="row">
+   <div class="column">
+    <img src="/pngs/correct_pred1.png"  height="200px">
+  </div>
+  <div class="column">
+    <img src="/pngs/correct_pred2.png" height="200px">
+  </div>
+  <div class="column">
+    <img src="/pngs/correct_pred3.png"  height="200px">
+  </div>
+</div>
 
-We realized that our model missclassified red cars and other objects as traffic signs, which dropped the accuracy drastically.
+We realized that our model missclassified red cars and other objects as traffic signs, which dropped the accuracy drastically. If this behaviour could be ameliorated, the accuracy would probably increase drastically
 See the example below:
-[!incorrect_pred]()
-
+<div>
+<img src="/pngs/incorrect_pred1.png"  height="200px">
+</div>
 
 
